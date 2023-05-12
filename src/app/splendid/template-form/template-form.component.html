@@ -1,0 +1,102 @@
+<div class="text-center">
+    <h1 class="mt-5 mb-4 ">TEMPLATE FORM!</h1>
+</div>
+<div class="row ">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 p-4 shadow-lg">
+        <form #loginForm="ngForm" (ngSubmit)="getData(loginForm)">
+            <div class="col-md-7">
+                <input type="text" name="name" #name="ngModel" required pattern="[a-zA-Z ]+$" minlength="3"
+                    class="form-control" placeholder="Enter Your Name" ngModel>
+                <span *ngIf="name.invalid && name.touched" class="text-danger fw-bolder">Required</span>
+            </div>
+            <br>
+            <div class="col-md-9"> <input type="email" name="email" required email #email="ngModel"
+                    class="form-control " placeholder="Enter Your email" ngModel>
+                <span *ngIf="email.invalid && email.touched" class="text-danger fw-bolder">Required</span>
+            </div>
+            <br>
+            <div class="col-md-9">
+                <input type="password" name="password" #password="ngModel"
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required class="form-control my-2 "
+                    placeholder="Enter Your password" ngModel>
+                <span *ngIf="password.invalid && password.touched" class="text-danger fw-bolder ">Required one letter
+                    one number and at least 8 characters <br></span>
+            </div>
+            <br>
+            <div class="col-md-5">
+                <input type="date" name="date" required min="1980-01-01" max="2023-12-31" #date="ngModel"
+                class="form-control " placeholder="Enter Your email" ngModel>
+            <span *ngIf="date.invalid && date.touched" class="text-danger fw-bolder">Required</span>
+            </div>
+            <br>
+            <div class="form-group col-md-5">
+                <select required #status="ngModel" ngModel name="status" class="form-select">
+                    <option value="" selected>Country</option>
+                    <option value="Pak">Pak</option>
+                    <option value="Ind">Ind</option>
+                    <option value="Aus">Aus</option>
+                    <option value="Usa">Usa</option>
+                </select>
+                <span *ngIf="status.invalid && status.touched" class="text-danger fw-bolder">Required</span>
+                <br>
+            </div>
+            <div class="form-group">
+                <input class="me-1" type="radio" name="gender" ngModel required value="male">
+                <label class="me-3 " for="">Male</label>
+                <input class="me-1" type="radio" name="gender" ngModel required value="female">
+                <label class="me-3" for="">Female</label>
+                <input class="me-1" type="radio" name="gender" ngModel required value="other">
+                <label class="me-3" for="">Other</label>
+            </div>
+            <br>
+            
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="d-grid"> 
+                <button class="btn btn-warning my-3" [disabled]="loginForm.invalid">{{submit}}</button>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<div *ngIf="submitted" class="container">
+    <h2 class="text-center my-4">Your Information</h2>
+    <table class="  table  shadow  text-center ">
+        <tr class="border text-center">
+            <th class="border  ">*</th>
+            <th class="border text-uppercase  ">S.no</th>
+            <th class="border  text-uppercase ">name</th>
+            <th class="border text-uppercase ">Email</th>
+            <th class="border text-uppercase ">Password</th>
+            <th class="border text-uppercase ">Date Of Birth</th>
+            <th class="border text-uppercase ">Gender</th>
+            <th class="border text-uppercase ">Country</th>
+            <!-- <th class="border text-uppercase  ">Update row</th>
+    <th class="border text-uppercase  ">Delete row</th> -->
+
+        </tr>
+        <tr *ngFor="let i of forData;index as ab">
+            <td><input class="form-check-input" type="checkbox" (click)="checkEd($event,i, ab)"></td>
+            <td>{{ab+1}}</td>
+            <td class="border pe-3 ">{{i.name}}</td>
+            <td class="border pe-3 ">{{i.email}}</td>
+            <td class="border pe-3 ">{{i.password}}</td>
+            <td class="border pe-3 ">{{i.date}}</td>
+            <td class="border pe-3 ">{{i.gender}}</td>
+            <td class="border pe-3 ">{{i.status}}</td>
+            <td class="text-center "><button class="btn btn-sm p-1 btn-outline-danger"
+                    (click)="reMove(ab)">Remove</button></td>
+            <td class="text-center "><button class="btn btn-sm  p-1 btn-outline-success"
+                    (click)="upDate(ab)">Update</button></td>
+        </tr>
+    </table>
+    <div class="text-end">
+        <button class="btn btn-danger" (click)="removeAll()"> Remove All</button>
+    </div>
+</div>

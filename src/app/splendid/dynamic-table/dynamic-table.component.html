@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-6">
+        <h1>Dynamic-Table</h1>
+    <table>
+        <thead>
+            <tr *ngFor="let key of tab_key">
+                <th>{{key}}</th>  
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let arr of tab_value">
+                <td *ngFor="let val of arr">{{val}}</td>
+               
+                
+            </tr>
+        </tbody>
+        
+    </table>
+    </div>
+    <div class="col-md-3">
+
+    </div>
+</div>

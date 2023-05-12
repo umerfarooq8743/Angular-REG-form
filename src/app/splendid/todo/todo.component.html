@@ -1,0 +1,32 @@
+<div class="row my-5">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 text-center">
+        <h1>Todo</h1>
+        <div class="container my-5">
+            <input type="text" name="content" #myuser class="form-control" placeholder="Enter Your content"><br>
+            
+           <div class="d-grid">
+            <input type="submit" (click)="onclick(myuser)" class="btn btn-danger">
+           </div>
+           <table class="table table-bordered mt-4">
+            <thead>
+              <tr class="bg-secondary">
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Remove</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of userlist;index as userno">
+                <td>{{userno + 1}}</td>
+                <td>{{i}}</td>
+                <td><button class="btn btn-sm btn-primary" (click)="dlt(userno)">Remove</button></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>

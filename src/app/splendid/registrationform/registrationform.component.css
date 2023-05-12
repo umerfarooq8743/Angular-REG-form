@@ -1,0 +1,26 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.titlesize{
+    font-size: 45px;
+    
+    color: rgb(0, 0, 0);
+}
+    /* .abc{
+        border-width: 1px;
+        border-color: azure;
+        border-style: solid;
+        box-shadow: 2px 3px 2px 3px rgb(82, 74, 74) !important;
+    }
+    input,select{
+        background-color: rgb(31, 30, 30);
+        color: rgb(156, 154, 154);
+    }
+    input,select:hover{
+        background-color: rgb(31, 30, 30);
+        color: rgb(156, 154, 154);
+    }
+    .xyz{
+        color: rgb(233, 222, 222);
+        background-color: rgb(31, 30, 30);
+    } */

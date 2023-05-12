@@ -1,0 +1,477 @@
+<div class=" py-5 xyz">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-5 pb-3 shadow border-1 abc rounded-3">
+                <!-- <div class="row">
+                    <div class="col-md-9"></div>
+                    <div class="col-md-3 mt-3 mb-2"><div class="form-check form-switch ">
+                        <input class="form-check-input" [formGroup]="togglecontrol" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault"><small>Dark Mode</small></label>
+                      </div></div>
+                </div> -->
+                <p class="my-4  text-center text-uppercase titlesize">{{title}} </p>
+                
+                <form [formGroup]="registration" class="px-3" (ngSubmit)="getData()">
+                    <span class="text-center"><h4 class="text-decoration-underline text-uppercase">Personal Information:</h4></span>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="">
+                                <p class="mt-3 fw-bold">First Name <span style="color: rgb(197, 67, 67);">*</span></p>
+                            </label>
+                            <input type="text" name="fname" [class.is-invalid]="f['fname'].invalid && f['fname'].touched"
+                                class="form-control mb-1" formControlName="fname">
+                                <div class="alert alert-danger m-0 p-1" *ngIf="f['fname'].invalid && f['fname'].touched">
+                                    <div *ngIf="f['fname'].errors && f['fname'].errors['required']">
+                                        Required
+                                    </div>
+                                    <div *ngIf="f['fname'].errors && f['fname'].errors['pattern']">
+                                        Only use letter and space
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">
+                                <p class="mt-3 fw-bold">Last Name <span style="color: rgb(197, 67, 67);">*</span></p>
+                            </label>
+                            <input type="text" name="lname" [class.is-invalid]="f['lname'].invalid && f['lname'].touched"
+                                class="form-control mb-1 " formControlName="lname">
+                                <div class="alert alert-danger  m-0 p-1" *ngIf="f['lname'].invalid && f['lname'].touched">
+                                    <div *ngIf="f['lname'].errors && f['lname'].errors['required']">
+                                        Required
+                                    </div>
+                                    <div *ngIf="f['lname'].errors && f['lname'].errors['pattern']">
+                                        Only use letter and space
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                   
+                    <div class="form-group col-md-12">
+                        <label for="">
+                            <p class="mt-3 fw-bold">Email <span style="color: rgb(197, 67, 67);">*</span></p>
+                        </label>
+                        <input type="email" name="email" class="form-control mb-1" formControlName="email" placeholder="@.com">
+                        <div class="alert alert-danger  m-0 p-1" *ngIf="f['email'].invalid && f['email'].touched">
+                            <div *ngIf="f['email'].errors && f['email'].errors['required']">
+                                Required
+                            </div>
+                            <div *ngIf="f['email'].errors && f['email'].errors['pattern']">
+                                Please follow the email pattern
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <!-- <div class="form-group">
+            <label for="">
+              <h5 class="my-3">Phone Number:</h5>
+            </label>
+            <input type="number" name="phone" min="03000000000" max="03999999999" class="form-control" placeholder="03*********"
+              formControlName="phone">
+          </div>
+          <div class="alert alert-danger" *ngIf="f['phone'].invalid && f['phone'].touched">
+            <div *ngIf="f['phone'].errors && f['phone'].errors['required']">
+               Required
+            </div>
+            <div *ngIf="f['phone'].errors && f['phone'].errors['pattern'] && f['phone'].invalid">
+               required 11 digits /03*********  this formate
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="form-group col-md-6">
+                <label for="">
+                    <p class="mt-3 fw-bold">Date of Birth <span style="color: rgb(197, 67, 67);">*</span></p>
+                </label>
+                <input type="date" name="date" [min]="minDate" (blur)="changedate($event)"  [max]="maxDate" class="form-control mb-1"
+                    formControlName="date">
+                    <div class="alert alert-danger mt-0 p-1" *ngIf="f['date'].invalid && f['date'].touched">
+                        <div *ngIf="f['date'].errors && f['date'].errors['required']">
+                            Required b/w 1980-2006 
+                        </div>
+                    </div>
+            </div>
+           
+            <div class="col-md-6">
+                <label for="">
+                    <p class="mt-3 fw-bold">Marital Status <span style="color: rgb(197, 67, 67);">*</span></p>
+                </label>
+                <select name="status" class="form-select mb-1" formControlName="status">
+                    <option value="" selected>Select</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Widowed">Widowed</option>
+                </select>
+                <div class="alert alert-danger p-1 m-0" *ngIf="f['status'].invalid && f['status'].touched">
+                    <div *ngIf="f['status'].errors && f['status'].errors['required']">
+                        Required
+                    </div>
+                </div>
+            </div>
+        </div>
+                    <div class="row">
+                        <div class=" col-md-4">
+                            <label for="">
+                                <p class="mt-3 fw-bold" selected>Code <span style="color: rgb(197, 67, 67);">*</span></p>
+                            </label>
+                            <select name="code" formControlName="code" class="form-select mb-1">
+                                <option value="">Select</option>
+                                <option value="+90">+90</option>
+                                <option value="+91">+91</option>
+                                <option value="+92">+92</option>
+                                <option value="+93">+93</option>
+                                <option value="+1">+1</option>
+                            </select>
+                            <div class="alert alert-danger p-1 m-0" *ngIf="f['code'].invalid && f['code'].touched">
+                                <div *ngIf="f['code'].errors && f['code'].errors['required']">
+                                    Required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <label>
+                                <p class="mt-3 fw-bold">Phone Number <span style="color: rgb(197, 67, 67);">*</span></p>
+                            </label>
+                            <input type="number" name="phone" class="form-control mb-1" formControlName="phone">
+                            <div class="alert alert-danger p-1 m-0" *ngIf="f['phone'].invalid && f['phone'].touched">
+                                <div *ngIf="f['phone'].errors && f['phone'].errors['required']">
+                                    Required and can't use e
+                                </div>
+                                <div *ngIf="f['phone'].errors && f['phone'].errors['pattern'] && f['phone'].invalid">
+                                    Required less then 13 digits
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="col-md-6 form-group mb-3">
+                        <p class="mt-3 fw-bold">Gender <span style="color: rgb(197, 67, 67);">*</span></p>
+                        <input class="me-1" type="radio" name="gender" value="male" formControlName="gender">
+                        <label class="me-3 " for="">Male</label>
+                        <input class="me-1" type="radio" name="gender" value="female" formControlName="gender">
+                        <label class="me-3" for="">Female</label>
+                        <input class="me-1" type="radio" name="gender" value="other" formControlName="gender">
+                        <label class="me-3" for="">Other</label>
+                        <div class="alert alert-danger m-0 p-1" *ngIf="f['gender'].invalid && f['gender'].touched">
+                            <div *ngIf="f['gender'].errors && f['gender'].errors['required']">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                  
+                   
+                    <!-- <hr>
+                    <h4 class="text-decoration-underline text-uppercase">Employment Information:</h4>
+                    <div class="form-group col-md-6">
+                        <label for="">
+                            <p class="mt-3 fw-bold">Job Title:</p>
+                        </label>
+                        <input type="text" name="job_title" class="form-control" formControlName="job_title">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="f['job_title'].invalid && f['job_title'].touched">
+                        <div *ngIf="f['job_title'].errors && f['job_title'].errors['required']">
+                            Required
+                        </div>
+                        <div *ngIf="f['job_title'].errors && f['job_title'].errors['pattern']">
+                            Only use Letter And Space
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">
+                            <p class="mt-3 fw-bold">Department:</p>
+                        </label>
+                        <input type="text" name="department" class="form-control" 
+                            formControlName="department">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="f['department'].invalid && f['department'].touched">
+                        <div *ngIf="f['department'].errors && f['department'].errors['required']">
+                            Required
+                        </div>
+                        <div *ngIf="f['department'].errors && f['department'].errors['pattern']">
+                            Only use Letter And Space
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">
+                            <p class="mt-3 fw-bold">Manager:</p>
+                        </label>
+                        <input type="text" name="manager" class="form-control" 
+                            formControlName="manager">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="f['manager'].invalid && f['manager'].touched">
+                        <div *ngIf="f['manager'].errors && f['manager'].errors['required']">
+                            Required
+                        </div>
+                        <div *ngIf="f['manager'].errors && f['manager'].errors['pattern']">
+                            Only use Letter And Space
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">
+                            <p class="my-3 fw-bold">Hire Date:</p>
+                        </label>
+                        <input type="date" name="hire_date" min="2023-01-01" max="2023-12-31" class="form-control"
+                            placeholder="Hire Date:" formControlName="hire_date">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="f['hire_date'].invalid && f['hire_date'].touched">
+                        <div *ngIf="f['hire_date'].errors && f['hire_date'].errors['required']">
+                            Required
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 mb-5">
+                        <div class="form-group ">
+                            <label for="">
+                                <p class="my-3 fw-bold">Employment Type:</p>
+                            </label>
+                            <select name="employment_type" class="form-select" formControlName="employment_type">
+                                <option value="">Select</option>
+                                <option value="Full Time">Full Time</option>
+                                <option value="Part Time">Part Time</option>
+                            </select>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="f['employment_type'].invalid && f['employment_type'].touched">
+                            <div *ngIf="f['employment_type'].errors && f['employment_type'].errors['required']">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <h4 class="text-decoration-underline text-uppercase">Salary Information:</h4>
+                    <div class="form-group col-md-6">
+                        <label for="">
+                            <p class="mt-3 fw-bold">Salary:</p>
+                        </label>
+                        <input type="number" name="salary" class="form-control" 
+                            formControlName="salary">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="f['salary'].invalid && f['salary'].touched">
+                        <div *ngIf="f['salary'].errors && f['salary'].errors['required']">
+                            Required
+                        </div>
+                        <div *ngIf="f['salary'].errors && f['salary'].errors['pattern']">
+                            enter your salary in 6 digits
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group col-md-6">
+                            <label for="">
+                                <p class="my-3 fw-bold">Currency</p>
+                            </label>
+                            <select name="currency" class="form-select" formControlName="currency">
+                                <option value="">Select</option>
+                                <option value="USD">USD</option>
+                                <option value="PAk">PAk</option>
+                                <option value="EUR">EUR</option>
+                                <option value="EUR">CAD</option>
+                            </select>
+                        </div>
+                        <div class="alert alert-danger" *ngIf="f['currency'].invalid && f['currency'].touched">
+                            <div *ngIf="f['currency'].errors && f['currency'].errors['required']">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="form-group col-md-6">
+                            <label for="">
+                                <p class="my-3 fw-bold">Payment Method: </p>
+                            </label>
+                            <select name="payment_method" class="form-select" formControlName="payment_method">
+                                <option value="">Select</option>
+                                <option value="Direct Deposit">Direct Deposit</option>
+                                <option value="Check">Check</option>
+                            </select>
+                        </div>
+                        <div class="alert alert-danger"
+                            *ngIf="f['payment_method'].invalid && f['payment_method'].touched">
+                            <div *ngIf="f['payment_method'].errors && f['payment_method'].errors['required']">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <h4 class="text-decoration-underline text-uppercase">Emergency Contact Information:</h4>
+                    <div class="form-group col-md-6">
+                        <label for="">
+                            <p class="mt-3 fw-bold">Full Name:</p>
+                        </label>
+                        <input type="text" name="full_name" class="form-control" 
+                            formControlName="full_name">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="f['full_name'].invalid && f['full_name'].touched">
+                        <div *ngIf="f['full_name'].errors && f['full_name'].errors['required']">
+                            Required
+                        </div>
+                        <div *ngIf="f['full_name'].errors && f['full_name'].errors['pattern']">
+                            Only use Letter And Space
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">
+                            <p class="mt-3 fw-bold">Relationship: </p>
+                        </label>
+                        <input type="text" name="relation" class="form-control" 
+                            formControlName="relation">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="f['relation'].invalid && f['relation'].touched">
+                        <div *ngIf="f['relation'].errors && f['relation'].errors['required']">
+                            Required
+                        </div>
+                        <div *ngIf="f['relation'].errors && f['relation'].errors['pattern']">
+                            Only use Letter And Space
+                        </div>
+                    </div> -->
+                    <!-- <div class="form-group">
+            <label for="">
+              <h5 class="my-3">Phone Number:</h5>
+            </label>
+            <input type="number" name="phone_no" class="form-control" placeholder="Enter  Phone"
+              formControlName="phone_no">
+          </div>
+          <div class="alert alert-danger" *ngIf="f['phone_no'].invalid && f['phone_no'].touched">
+            <div *ngIf="f['phone_no'].errors && f['phone_no'].errors['required']">
+              Required
+            </div>
+            <div *ngIf="f['phone_no'].errors && f['phone_no'].errors['pattern']">
+              phone number required in 11 digits
+            </div>
+          </div> -->
+                    <!-- <div class="row">
+                        <div class="col-md-3">
+                            <label for="">
+                                <p class="my-3 fw-bold">Code</p>
+                            </label>
+                            <select name="code1" formControlName="code1" class="form-select">
+                                <option value="">Select</option>
+                                <option value="+90">+90</option>
+                                <option value="+91">+91</option>
+                                <option value="+92">+92</option>
+                                <option value="+93">+93</option>
+                                <option value="+1">+1</option>
+                            </select>
+                            <div class="alert alert-danger " *ngIf="f['code1'].invalid && f['code1'].touched">
+                                <div *ngIf="f['code1'].errors && f['code1'].errors['required']">
+                                    Required
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>
+                                <p class="my-3 fw-bold">Phone Number:</p>
+                            </label>
+                            <input type="number" name="phone_no" class="form-control" 
+                                formControlName="phone_no">
+                            <div class="alert alert-danger" *ngIf="f['phone_no'].invalid && f['phone_no'].touched">
+                                <div *ngIf="f['phone_no'].errors && f['phone_no'].errors['required']">
+                                    Required
+                                </div>
+                                <div
+                                    *ngIf="f['phone_no'].errors && f['phone_no'].errors['pattern'] && f['phone_no'].invalid">
+                                    required 9 digits 
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>-->
+                    <div class="mt-4 col-md-6" >
+                        <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" name="accept" formControlName="accept">
+                            I Accept The Terms & Conditions
+                        </div>
+                        <div class="alert alert-danger m-0 p-1" *ngIf="f['accept'].invalid && f['accept'].touched">
+                            <div *ngIf="f['accept'].errors && f['accept'].errors['required']">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                    <br /> 
+                  <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="d-grid">
+                            <input type="submit" [disabled]="registration.invalid ? true : false" value="{{submit}}"
+                                class="btn btn-primary mb-3">
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                  </div>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <div class="container" *ngIf="submitted">
+        <div class="text-end  mt-5 mb-2">
+            <button class="btn btn-danger" (click)="dltall()"> Remove All</button>
+
+        </div>
+        <table class="table table-bordered shadow ">
+            <thead>
+                <tr class="table table-bordered text-center">
+                    <th>*</th>
+                    <th>S.NO</th>
+                    <th>FIRST</th>
+                    <th>LAST</th>
+                    <th>EMAIL</th>
+                    <th>C-CODE</th>
+                    <th>PHONE</th>
+                    <th>DATE</th>
+                    <th>GENDER</th>
+                    <th>STATUS</th>
+                    <!-- <th>JOB TITLE</th>
+                    <th>DEPARTMENT</th>
+                    <th>MANAGER</th>
+                    <th>HIRE DATE</th>
+                    <th>EMPLOYMENT TYPE</th>
+                    <th>SALARY</th>
+                    <th>CURRENCY</th>
+                    <th>PAYMENT METHOD</th>
+                    <th>RELATION</th>
+                    <th>FULL NAME</th>
+                    <th>Code Rel</th>
+                    <th>PHONE NO</th> -->
+                    <th>DELETE ROW</th>
+                    <th>UPDATE ROW</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of userdata;index as user_no" class="table-bordered">
+                    <td><input class="form-check-input" type="checkbox" (click)="checkedid(i)" ></td>
+                    <td>{{user_no+1}} </td>
+                    <td>{{i.fname}}</td>
+                    <td>{{i.lname}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.code}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.gender}}</td>
+                    <td>{{i.status}}</td>
+                    <!-- <td>{{i.job_title}}</td>
+                    <td>{{i.department}}</td>
+                    <td>{{i.manager}}</td>
+                    <td>{{i.hire_date}}</td>
+                    <td>{{i.employment_type}}</td>
+                    <td>{{i.salary}}</td>
+                    <td>{{i.currency}}</td>
+                    <td>{{i.payment_method}}</td>
+                    <td>{{i.relation}}</td>
+                    <td>{{i.full_name}}</td>
+                    <td>{{i.code1}}</td>
+                    <td>{{i.phone_no}}</td> -->
+                    <td class="text-center"><button class="btn btn-sm btn-danger" (click)="dlt(user_no)">Remove</button>
+                    </td>
+                    <td class="text-center"><button class="btn btn-sm btn-success"
+                            (click)="update(user_no)">Update</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
